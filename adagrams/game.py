@@ -36,24 +36,58 @@ def draw_letters():
     letter_pool = create_letter_pool()
 
     #Randomly select 10 characters from the data structure
-    counter = 0
     letter_hand = []
     for i in range(10):
+        #Generates a random integer between 0 and the last element in letter_pool list.
         random_index = randint(0,len(letter_pool)-1)
+        #Access an element within letter_pool list, determined by random_index.
         random_letter = letter_pool[random_index]
+        #Add the newly generated random letter to letter_hand list.
         letter_hand.append(random_letter)
+        #Remove the random_letter from letter_pool
+        letter_pool.remove(random_letter)
 
-    #Return a list of 10 strings
+    #Return letter_hand list of 10 letters.
     return letter_hand
 
-result = draw_letters()
-print(result)
 
 def uses_available_letters(word, letter_bank):
-    pass
+    word = word.upper()
+    #Create a dictionary for word to store the word and its frequency.
+    word_count = {}
+    #Iterate through each element in word and add it to word_count dictionary.
+    for char in word:
+        if char in word_count:
+            word_count[char] += 1
+        else:
+            word_count[char] = 1
+    
+
+    #Create a dictionary for letter_bank to store each word and its frequency.
+    letter_bank_count = {}
+    #Iterate through each element in letter_bank list and add it to letter_bank_count dictionary.
+    for i in letter_bank:
+        if i in letter_bank_count:
+            letter_bank_count[i] += 1
+        else:
+            letter_bank_count[i] = 1
+
+    
+    #For every letter in word_count, the letter in letter_bank_count is greater than or equal to it.
+    #Iterate through word_count dictionary
+    for char in word_count.keys():
+        if char not in letter_bank_count or word_count[char] > letter_bank_count[char]:
+            return False
+    return True
+        
+
 
 def score_word(word):
     pass
 
+
+
 def get_highest_word_score(word_list):
     pass
+
+
