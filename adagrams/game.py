@@ -130,6 +130,33 @@ def score_word(word):
 
 
 def get_highest_word_score(word_list):
-    pass
+    best_score = 0
+    best_scoring_tuple = None
+    #Iterate through every word in word_list.
+    for word in word_list:
+        #Get the score of each word.
+        word_score = score_word(word)
+        #Add word and it's score to tuple
+        word_score_tuple = (word, word_score)
+
+
+        #Check if the current word's score is greater than best_score variable
+        if word_score > best_score:
+            #Update best_score variable to equal word_score
+            best_score = word_score
+            #Update best_scoring_tuple to that word's tuple.
+            best_scoring_tuple =  word_score_tuple
+        #Check if word_score is the same as best_score
+        elif word_score == best_score:
+            best_word = best_scoring_tuple[0]
+            #Count the letters in word and check if they're equal to 10
+            if len(word) == 10 and len(best_word) != 10:
+                best_scoring_tuple = word_score_tuple
+            elif len(best_word) > len(word) and len(best_word) != 10:
+                best_scoring_tuple = word_score_tuple
+
+
+    return best_scoring_tuple
+
 
 
