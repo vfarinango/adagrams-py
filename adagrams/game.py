@@ -83,7 +83,49 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    word = word.upper()
+    #Create a dictionary to store score chart.
+    letter_values = {
+        'A': 1,
+        'B': 3,
+        'C': 3,
+        'D': 2,
+        'E': 1,
+        'F': 4,
+        'G': 2,
+        'H': 4,
+        'I': 1,
+        'J': 8,
+        'K': 5,
+        'L': 1,
+        'M': 3,
+        'N': 1,
+        'O': 1,
+        'P': 3,
+        'Q': 10,
+        'R': 1,
+        'S': 1,
+        'T': 1,
+        'U': 1,
+        'V': 4,
+        'W': 4,
+        'X': 8,
+        'Y': 4,
+        'Z': 10
+    }
+    word_score = 0
+
+
+    #Iterate through word string
+    for char in word:
+    #Match each char in word to element in letter_values
+        letter_value = letter_values[char]
+        #Sum the value of element(value) of letter_values and store in word_score
+        word_score += letter_value
+        #If the length of word is 7,8,9,10 - add 8 to word_score
+    if len(word) == 7 or len(word) == 8 or len(word) == 9 or len(word) == 10:
+        word_score += 8
+    return word_score
 
 
 
